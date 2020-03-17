@@ -10,6 +10,7 @@ target 'Feeder Pro' do
   pod 'Alamofire', '~> 5.0'
   pod 'SwiftyJSON'
   pod 'IQKeyboardManagerSwift'
+  pod 'Kingfisher'
   
   target 'Feeder ProTests' do
     inherit! :search_paths

@@ -43,7 +43,7 @@ extension DataManager{
         
         let endpoint:APIEndpoint = .topHeadLines
         
-        let selectedCountry = AppConfiguration.selectedCountry 
+        let selectedCountry = AppConfiguration.selectedCountry?.value 
         
         //Query parameter
         var queryParameters = Parameters()

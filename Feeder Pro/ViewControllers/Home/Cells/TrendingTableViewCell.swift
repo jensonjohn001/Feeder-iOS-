@@ -7,11 +7,21 @@
 //
 
 import UIKit
+import Kingfisher
 
 class TrendingTableViewCell: UITableViewCell {
     
     //IBOutlets
     @IBOutlet var trendingCollectionView: UICollectionView!
+    
+    //Set from parent
+    var cellData:[Article]?{
+        didSet{
+            DispatchQueue.main.async {
+                self.trendingCollectionView.reloadData()
+            }
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,12 +34,13 @@ class TrendingTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    
 }
 // MARK: -Collection View delegates
 extension TrendingTableViewCell: UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     
-        return 10
+        return self.cellData?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -38,7 +49,27 @@ extension TrendingTableViewCell: UICollectionViewDelegate,UICollectionViewDataSo
         let nibName = UINib(nibName: "TrendingCollectionViewCell", bundle:nil)
         collectionView.register(nibName, forCellWithReuseIdentifier: "TrendingCollectionViewCell")
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TrendingCollectionViewCell", for: indexPath) as! TrendingCollectionViewCell
-       
+        
+        if let article = self.cellData?[indexPath.row]{
+            
+            cell.newsImageView.kf.indicatorType = .activity
+            let url = URL(string: article.urlToImage ?? "")
+            cell.newsImageView.kf.setImage(
+                with: url,
+                placeholder: UIImage(named: "placeholderImage"),
+                options: [
+                    .transition(.fade(1)),
+                    .cacheOriginalImage
+                ])
+            
+            
+            cell.titleLable.text = article.title ?? ""
+            cell.authorNameLabel.text = article.author ?? (article.source?.name ?? "Unknown author")
+            cell.publishedAtLabel.text = article.publishedAt
+            
+            cell.setBlurView()
+        }
+        
         return cell
         
     }

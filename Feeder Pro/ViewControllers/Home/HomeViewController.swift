@@ -22,11 +22,14 @@ class HomeViewController: UIViewController {
         controller.preferredContentSize = CGSize(width: 250, height: 320)
         return controller
     }()
+    private var articles = [Article]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        fetchTopHeadLines()
     }
 
 
@@ -74,7 +77,7 @@ extension HomeViewController{
 // MARK: - TableView Delegates
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 1
         
     }
     
@@ -85,6 +88,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate{
         
         cell.selectionStyle = .none
         
+        cell.cellData = self.articles
 
         return cell
         
@@ -104,6 +108,22 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate{
 //API Calls
 extension HomeViewController{
     
-    
+    func fetchTopHeadLines(){
+        
+        indicator.show()
+        DataManager.shared.getTopHeadLines() { (apiStatus, message, articles) in
+            DispatchQueue.main.async {
+                indicator.hide()
+                if apiStatus != .ok{
+                    print("ERROR:\(message)")
+                }else{
+                    self.articles = articles ?? [Article]()
+                    self.tableView.reloadData()
+                }
+            }
+            
+        }
+        
+    }
     
 }
