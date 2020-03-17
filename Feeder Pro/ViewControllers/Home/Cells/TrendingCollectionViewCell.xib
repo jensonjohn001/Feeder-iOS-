@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TrendingCollectionViewCell" id="gTV-IL-0wX" customClass="TrendingCollectionViewCell" customModule="Feeder_Pro" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="250" height="320"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="250" height="320"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sri-og-Pw0">
+                        <rect key="frame" x="8" y="8" width="234" height="304"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WbR-Gd-WRx">
+                                <rect key="frame" x="0.0" y="0.0" width="234" height="245"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pwu-3v-ExF">
+                                <rect key="frame" x="-1" y="245" width="236" height="60"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="B9f-Z2-tr3">
+                                        <rect key="frame" x="16" y="10.5" width="40" height="39"/>
+                                        <color key="tintColor" name="appMainTextColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="kz2-87-GNp"/>
+                                            <constraint firstAttribute="width" constant="40" id="lwZ-Qc-KxD"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xa7-p8-eDr">
+                                        <rect key="frame" x="64" y="11.5" width="164" height="17"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                        <color key="textColor" name="appMainTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12 min ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gAA-aj-aUO">
+                                        <rect key="frame" x="64" y="33.5" width="164" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                        <color key="textColor" name="appMainTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" name="appSecondaryBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="gAA-aj-aUO" firstAttribute="trailing" secondItem="Xa7-p8-eDr" secondAttribute="trailing" id="9yW-db-ZlN"/>
+                                    <constraint firstItem="gAA-aj-aUO" firstAttribute="leading" secondItem="Xa7-p8-eDr" secondAttribute="leading" id="LOs-qj-k2X"/>
+                                    <constraint firstAttribute="trailing" secondItem="Xa7-p8-eDr" secondAttribute="trailing" constant="8" id="MMy-GQ-yLz"/>
+                                    <constraint firstAttribute="height" constant="60" id="Sz3-Gt-p6w"/>
+                                    <constraint firstItem="Xa7-p8-eDr" firstAttribute="centerY" secondItem="B9f-Z2-tr3" secondAttribute="centerY" constant="-10" id="Xoe-Oj-3Ge"/>
+                                    <constraint firstItem="Xa7-p8-eDr" firstAttribute="leading" secondItem="B9f-Z2-tr3" secondAttribute="trailing" constant="8" id="dO4-ai-Sru"/>
+                                    <constraint firstItem="gAA-aj-aUO" firstAttribute="top" secondItem="Xa7-p8-eDr" secondAttribute="bottom" constant="5" id="frr-01-vkz"/>
+                                    <constraint firstItem="B9f-Z2-tr3" firstAttribute="leading" secondItem="pwu-3v-ExF" secondAttribute="leading" constant="16" id="qYo-eQ-6Hz"/>
+                                    <constraint firstItem="B9f-Z2-tr3" firstAttribute="centerY" secondItem="pwu-3v-ExF" secondAttribute="centerY" id="yRX-YF-zUB"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EKe-Wr-CmB">
+                                <rect key="frame" x="0.0" y="202.5" width="234" height="42.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The valley are blue " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NTf-l8-L6d">
+                                        <rect key="frame" x="8" y="5" width="218" height="21.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.38832405821917809" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="NTf-l8-L6d" secondAttribute="bottom" constant="16" id="04C-nX-1nE"/>
+                                    <constraint firstItem="NTf-l8-L6d" firstAttribute="leading" secondItem="EKe-Wr-CmB" secondAttribute="leading" constant="8" id="0s4-2J-aiL"/>
+                                    <constraint firstAttribute="trailing" secondItem="NTf-l8-L6d" secondAttribute="trailing" constant="8" id="fEe-eo-vaA"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="100" id="g0r-I1-nva"/>
+                                    <constraint firstItem="NTf-l8-L6d" firstAttribute="top" secondItem="EKe-Wr-CmB" secondAttribute="top" constant="5" id="mcn-tC-YnE"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" name="appPrimaryColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="EKe-Wr-CmB" secondAttribute="trailing" id="5Mc-bt-pmb"/>
+                            <constraint firstItem="EKe-Wr-CmB" firstAttribute="leading" secondItem="sri-og-Pw0" secondAttribute="leading" id="7UC-Yd-xCD"/>
+                            <constraint firstAttribute="trailing" secondItem="WbR-Gd-WRx" secondAttribute="trailing" id="GuB-fe-Wpl"/>
+                            <constraint firstAttribute="bottom" secondItem="pwu-3v-ExF" secondAttribute="bottom" constant="-1" id="RtW-hr-Ehd"/>
+                            <constraint firstItem="pwu-3v-ExF" firstAttribute="top" secondItem="EKe-Wr-CmB" secondAttribute="bottom" id="UXs-S0-vLf"/>
+                            <constraint firstItem="WbR-Gd-WRx" firstAttribute="top" secondItem="sri-og-Pw0" secondAttribute="top" id="XHB-dM-ILx"/>
+                            <constraint firstItem="pwu-3v-ExF" firstAttribute="top" secondItem="WbR-Gd-WRx" secondAttribute="bottom" id="XvG-wD-dWL"/>
+                            <constraint firstItem="WbR-Gd-WRx" firstAttribute="leading" secondItem="sri-og-Pw0" secondAttribute="leading" id="hGd-fo-aSg"/>
+                            <constraint firstItem="pwu-3v-ExF" firstAttribute="leading" secondItem="sri-og-Pw0" secondAttribute="leading" constant="-1" id="kpo-u6-yWX"/>
+                            <constraint firstAttribute="trailing" secondItem="pwu-3v-ExF" secondAttribute="trailing" constant="-1" id="nRz-mI-vK3"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="15"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="sri-og-Pw0" secondAttribute="bottom" constant="8" id="75G-7E-0HV"/>
+                <constraint firstItem="sri-og-Pw0" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="7Bb-Xo-5zS"/>
+                <constraint firstItem="sri-og-Pw0" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="eqi-9r-1gf"/>
+                <constraint firstAttribute="trailing" secondItem="sri-og-Pw0" secondAttribute="trailing" constant="8" id="rOD-lv-4WE"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="332" height="382"/>
+            <connections>
+                <outlet property="authorView" destination="pwu-3v-ExF" id="rJ8-Il-72d"/>
+            </connections>
+            <point key="canvasLocation" x="-136.23188405797103" y="243.75"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="person.circle.fill" catalog="system" width="64" height="60"/>
+        <namedColor name="appMainTextColor">
+            <color red="0.40000000596046448" green="0.40000000596046448" blue="0.40000000596046448" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="appPrimaryColor">
+            <color red="0.50980392156862742" green="0.69411764705882351" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="appSecondaryBackgroundColor">
+            <color red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
