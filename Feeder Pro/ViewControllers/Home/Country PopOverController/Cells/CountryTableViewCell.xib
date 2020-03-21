@@ -22,20 +22,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="271" height="47"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="in" translatesAutoresizingMaskIntoConstraints="NO" id="LTe-eI-CCX">
-                                <rect key="frame" x="8" y="3.5" width="40" height="40"/>
+                                <rect key="frame" x="16" y="3.5" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="6bZ-1b-rGh"/>
                                     <constraint firstAttribute="height" constant="40" id="WL7-MV-d4k"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="India" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KHy-p6-UWa">
-                                <rect key="frame" x="56" y="13" width="164" height="21"/>
+                                <rect key="frame" x="64" y="13" width="148" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="textColor" name="appMainTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="2Vf-oc-qyp">
-                                <rect key="frame" x="228" y="8" width="35" height="31.5"/>
+                                <rect key="frame" x="220" y="8" width="35" height="31.5"/>
                                 <color key="tintColor" name="appSecondaryColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="Pqb-2S-tCI"/>
@@ -48,9 +48,9 @@
                             <constraint firstItem="KHy-p6-UWa" firstAttribute="centerY" secondItem="LTe-eI-CCX" secondAttribute="centerY" id="8J0-0n-aUv"/>
                             <constraint firstItem="LTe-eI-CCX" firstAttribute="centerY" secondItem="UrE-Q7-XB4" secondAttribute="centerY" id="Ayv-35-dFW"/>
                             <constraint firstItem="KHy-p6-UWa" firstAttribute="leading" secondItem="LTe-eI-CCX" secondAttribute="trailing" constant="8" id="Tko-aL-DtN"/>
-                            <constraint firstItem="LTe-eI-CCX" firstAttribute="leading" secondItem="UrE-Q7-XB4" secondAttribute="leading" constant="8" id="k2Q-Cy-SBX"/>
+                            <constraint firstItem="LTe-eI-CCX" firstAttribute="leading" secondItem="UrE-Q7-XB4" secondAttribute="leading" constant="16" id="k2Q-Cy-SBX"/>
                             <constraint firstItem="2Vf-oc-qyp" firstAttribute="centerY" secondItem="UrE-Q7-XB4" secondAttribute="centerY" id="nxi-Ix-sEV"/>
-                            <constraint firstAttribute="trailing" secondItem="2Vf-oc-qyp" secondAttribute="trailing" constant="8" id="vD2-WN-1jb"/>
+                            <constraint firstAttribute="trailing" secondItem="2Vf-oc-qyp" secondAttribute="trailing" constant="16" id="vD2-WN-1jb"/>
                             <constraint firstItem="2Vf-oc-qyp" firstAttribute="leading" secondItem="KHy-p6-UWa" secondAttribute="trailing" constant="8" id="xlg-Pt-ehh"/>
                         </constraints>
                     </view>

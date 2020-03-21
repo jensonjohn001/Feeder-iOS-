@@ -18,8 +18,8 @@ enum AppConfiguration {
             UserDefaults.save(newCountry?.value, forKey: UserDefaultsKey.countrySelected.name, isReadyToCommit: true)
         }
         get {
-            if let country = UserDefaults.getvalue(forKey: UserDefaultsKey.countrySelected.name) as? Country{
-                return country
+            if let country = UserDefaults.getvalue(forKey: UserDefaultsKey.countrySelected.name) as? String{
+                return Country(rawValue: country) 
             }
             return .India
         }

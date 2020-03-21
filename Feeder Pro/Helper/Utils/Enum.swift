@@ -50,8 +50,8 @@ enum Country: String, Codable{
     case Mexico = "mx"
     case Morocco = "ma"
     case Netherlands = "nl"
-    case NewZealand = " nz"
-    case Nigeria = "ni"
+    case NewZealand = "nz"
+    case Nigeria = "ng"
     case Norway = "no"
     case Philippines = "ph"
     case Poland = "pl"
@@ -91,6 +91,20 @@ enum Country: String, Codable{
 enum UserDefaultsKey: String {
     
     case countrySelected
+
+    var name: String {
+        return self.rawValue
+    }
+}
+
+enum NewsCategory: String{
+    case trending
+    case business
+    case entertainment
+    case health
+    case science
+    case sports
+    case technology
 
     var name: String {
         return self.rawValue

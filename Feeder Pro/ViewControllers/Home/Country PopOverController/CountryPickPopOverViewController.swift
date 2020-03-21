@@ -8,10 +8,18 @@
 
 import UIKit
 
+protocol CountryPickPopOverViewControllerDelegate:class {
+    func didChooseCountry(_ country:Country)
+}
+
 class CountryPickPopOverViewController: UIViewController {
     
     // MARK: Connection Objects
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var doneButton: UIButton!
+    
+    //Set from parent
+    weak var delegate:CountryPickPopOverViewControllerDelegate?
     
     //Declaration
     var countries = [CountryModel]()
@@ -20,7 +28,21 @@ class CountryPickPopOverViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setSelectedCountry()
+    }
+    
+    func setSelectedCountry(){
         self.countries = getAllCountries()
+        
+        let selectedCountry = AppConfiguration.selectedCountry ?? .India
+        if let selectedIndex = self.countries.firstIndex(where: {$0.country == selectedCountry }){
+            self.countries[selectedIndex].isSelected = true
+        }
+        
         self.tableView.reloadData()
     }
 
@@ -30,12 +52,41 @@ class CountryPickPopOverViewController: UIViewController {
         var countries = [CountryModel]()
         for country in allCountries{
             var countryModel = CountryModel()
-            countryModel.countryCode = country.value
+            countryModel.country = country
             countryModel.countryName = country.caseName
             countryModel.isSelected = false
             countries.append(countryModel)
         }
         return countries
+    }
+    
+    func getSelectedCountry()->Country{
+        for country in self.countries{
+            if country.isSelected ?? false{
+                return country.country ?? .India
+            }
+        }
+        return .India
+    }
+    
+    func deSelectAllCountries(){
+        for (index,_) in self.countries.enumerated(){
+            self.countries[index].isSelected = false
+        }
+    }
+    
+    func isValidSelection()->Bool{
+        for country in self.countries{
+            if !(country.isSelected ?? false){
+                return false
+            }
+        }
+        return true
+    }
+    
+    func changeDoneButton(_ status: Bool){
+        self.doneButton.isUserInteractionEnabled = status
+        self.doneButton.backgroundColor = status ? #colorLiteral(red: 0, green: 0.4745098039, blue: 0.7450980392, alpha: 1) : #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
     }
 
 }
@@ -53,7 +104,7 @@ extension CountryPickPopOverViewController: UITableViewDataSource, UITableViewDe
         cell.selectionStyle = .none
         
         let cellData = self.countries[indexPath.row]
-        let countryCode = cellData.countryCode
+        let countryCode = cellData.country?.value
         cell.countryImageView.image = UIImage(named: countryCode ?? "in")
         cell.countryName.text = cellData.countryName
         cell.selectedImageView.isHidden = (cellData.isSelected ?? false) ? false : true
@@ -68,8 +119,28 @@ extension CountryPickPopOverViewController: UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       
+        self.deSelectAllCountries()
+        var cellData = self.countries[indexPath.row]
+        cellData.isSelected = true
+        self.countries[indexPath.row] = cellData
+        self.tableView.reloadData()
     }
     
+    
+}
+// MARK: - Button actions
+extension CountryPickPopOverViewController{
+    
+    @IBAction func doneButtonAction(_ sender: UIButton){
+        
+        let selectedCountry = self.getSelectedCountry()
+        AppConfiguration.selectedCountry = selectedCountry
+        self.delegate?.didChooseCountry(AppConfiguration.selectedCountry ?? .India)
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func closeButtonAction(_ sender: UIButton){
+        self.dismiss(animated: true, completion: nil)
+    }
     
 }

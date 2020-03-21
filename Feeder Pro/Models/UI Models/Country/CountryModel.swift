@@ -11,6 +11,6 @@ import Foundation
 struct CountryModel: Codable {
     
     var countryName: String?
-    var countryCode: String?
+    var country: Country?
     var isSelected: Bool?
 }

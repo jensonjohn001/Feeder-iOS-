@@ -56,7 +56,7 @@ extension TrendingTableViewCell: UICollectionViewDelegate,UICollectionViewDataSo
             let url = URL(string: article.urlToImage ?? "")
             cell.newsImageView.kf.setImage(
                 with: url,
-                placeholder: UIImage(named: "placeholderImage"),
+                placeholder: UIImage(named: "defaultImage"),
                 options: [
                     .transition(.fade(1)),
                     .cacheOriginalImage
@@ -65,7 +65,15 @@ extension TrendingTableViewCell: UICollectionViewDelegate,UICollectionViewDataSo
             
             cell.titleLable.text = article.title ?? ""
             cell.authorNameLabel.text = article.author ?? (article.source?.name ?? "Unknown author")
-            cell.publishedAtLabel.text = article.publishedAt
+            if let publishedDateInString = article.publishedAt {
+                if let publishedDate = publishedDateInString.toDate(){
+                    cell.publishedAtLabel.text = publishedDate.timeAgo(numericDates: true)
+                }else{
+                    cell.publishedAtLabel.text = article.publishedAt ?? "a while ago"
+                }
+            }else{
+                cell.publishedAtLabel.text = article.publishedAt ?? "a while ago"
+            }
             
             cell.setBlurView()
         }

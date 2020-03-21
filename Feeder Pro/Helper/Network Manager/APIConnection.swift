@@ -31,5 +31,6 @@ struct GetPostKeys {
     let authorization = "authorization"
     let country = "country"
     let apiKey = "apiKey"
+    let category = "category"
     
 }

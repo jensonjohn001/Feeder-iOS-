@@ -12,37 +12,40 @@ class HomeViewController: UIViewController {
     
     //IBOutlets
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var countryImageView: UIImageView!
+    @IBOutlet var countryCodeLabel: UILabel!
     
     //Declarations
     lazy var countryPicker: CountryPickPopOverViewController = {
         let controller = CountryPickPopOverViewController()
-        //controller.delegate = self
+        controller.delegate = self
         
         controller.modalPresentationStyle = .popover
         controller.preferredContentSize = CGSize(width: 250, height: 320)
         return controller
     }()
-    private var articles = [Article]()
+    private var articlesDictionary: [Int:[Article]] = [:]
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
+        loadSelectedCountry()
         fetchTopHeadLines()
     }
 
+}
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+// MARK: - Local funcions
+extension HomeViewController{
+    
+    func loadSelectedCountry(){
+        let selectedCountry = AppConfiguration.selectedCountry ?? .India
+        self.countryImageView.image = UIImage(named: selectedCountry.value)
+        self.countryCodeLabel.text = selectedCountry.value.uppercased()
+        
     }
-    */
-
+    
 }
 // MARK: - Button Actions
 extension HomeViewController{
@@ -61,7 +64,7 @@ extension HomeViewController{
         countryPicker.popoverPresentationController?.permittedArrowDirections = [.up]
         countryPicker.popoverPresentationController?.sourceView = source
         countryPicker.popoverPresentationController?.sourceRect = source.bounds
-        //countryPicker.delegate = self
+        countryPicker.delegate = self
         
         present(countryPicker, animated: true, completion: nil)
         
@@ -77,39 +80,97 @@ extension HomeViewController{
 // MARK: - TableView Delegates
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+
+        if section == 0{
+            return 1
+        }else{
+            let cellData = self.articlesDictionary[section]
+            return cellData?.count ?? 0
+        }
         
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        tableView.register(UINib(nibName: "TrendingTableViewCell", bundle: nil), forCellReuseIdentifier: "TrendingTableViewCell")
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TrendingTableViewCell", for: indexPath) as! TrendingTableViewCell
-        
-        cell.selectionStyle = .none
-        
-        cell.cellData = self.articles
-
-        return cell
+        if indexPath.section == 0{
+            //Trending news row
+            tableView.register(UINib(nibName: "TrendingTableViewCell", bundle: nil), forCellReuseIdentifier: "TrendingTableViewCell")
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TrendingTableViewCell", for: indexPath) as! TrendingTableViewCell
+            
+            cell.selectionStyle = .none
+            
+            let cellData = self.articlesDictionary[indexPath.section]
+            
+            cell.cellData = cellData
+            
+            return cell
+        }else{
+            
+            tableView.register(UINib(nibName: "OtherNewsTableViewCell", bundle: nil), forCellReuseIdentifier: "OtherNewsTableViewCell")
+            let cell = tableView.dequeueReusableCell(withIdentifier: "OtherNewsTableViewCell", for: indexPath) as! OtherNewsTableViewCell
+            
+            cell.selectionStyle = .none
+            
+            let cellData = self.articlesDictionary[indexPath.section]
+            
+            cell.cellData = cellData?[indexPath.row]
+            
+            return cell
+            
+            
+        }
         
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
+        if indexPath.section == 0{
             return 330
+        }else{
+             return 135
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        self.articlesDictionary.keys.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection: Int) -> CGFloat {
+        
+        return 50
+    }
+    
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection: Int) -> UIView? {
+        
+        tableView.register(UINib(nibName: "HeaderTableViewCell", bundle: nil), forCellReuseIdentifier: "HeaderTableViewCell")
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "HeaderTableViewCell") as! HeaderTableViewCell
+        
+        var sectionName = ""
+        switch viewForHeaderInSection{
+        case 0: sectionName = "Trending"
+        case 1: sectionName = "Technology"
+        case 2: sectionName = "Business"
+        default:
+            sectionName = "Other News"
+        }
+        
+        cell.titleLabel.text = sectionName
+        
+        return cell
+        
+    }
     
 }
 //API Calls
 extension HomeViewController{
     
     func fetchTopHeadLines(){
-        
+        self.articlesDictionary.removeAll()
         indicator.show()
         DataManager.shared.getTopHeadLines() { (apiStatus, message, articles) in
             DispatchQueue.main.async {
@@ -117,13 +178,52 @@ extension HomeViewController{
                 if apiStatus != .ok{
                     print("ERROR:\(message)")
                 }else{
-                    self.articles = articles ?? [Article]()
-                    self.tableView.reloadData()
+                    //Saving trending news
+                    self.articlesDictionary[0] = articles
+                    
+                    //Fetching other category news
+                    self.fetchOtherNews(category: .technology) { (technologyNews) in
+                        self.articlesDictionary[1] = technologyNews
+                        self.fetchOtherNews(category: .business) { (businessNews) in
+                            self.articlesDictionary[2] = businessNews
+                             self.tableView.reloadData()
+                        }
+                    }
                 }
             }
             
         }
         
     }
+    
+    
+    func fetchOtherNews(category:NewsCategory, completion: @escaping (_ categoryNews: [Article]) -> () ){
+        
+        indicator.show()
+        DataManager.shared.getLatestNews(for: category) { (apiStatus, message, articles) in
+            DispatchQueue.main.async {
+                indicator.hide()
+                if apiStatus != .ok{
+                    print("ERROR:\(message)")
+                    completion(articles ?? [Article]())
+                }else{
+                    completion(articles ?? [Article]())
+                   
+                }
+            }
+            
+        }
+        
+    }
+    
+    
+    
+}
+extension HomeViewController:CountryPickPopOverViewControllerDelegate{
+    func didChooseCountry(_ country: Country) {
+        loadSelectedCountry()
+        fetchTopHeadLines()
+    }
+    
     
 }

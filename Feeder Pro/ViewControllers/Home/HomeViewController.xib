@@ -11,6 +11,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="Feeder_Pro" customModuleProvider="target">
             <connections>
+                <outlet property="countryCodeLabel" destination="2w2-hZ-MbY" id="GbI-ok-4lI"/>
+                <outlet property="countryImageView" destination="uIv-2n-5eJ" id="4om-QA-Msu"/>
                 <outlet property="tableView" destination="VKZ-ET-Lpq" id="Xac-YL-FR1"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -44,16 +46,16 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tKu-Ch-e7n">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line.horizontal.3" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Mjr-E5-Iue">
-                                    <rect key="frame" x="16" y="15" width="30" height="20.5"/>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menu" translatesAutoresizingMaskIntoConstraints="NO" id="Mjr-E5-Iue">
+                                    <rect key="frame" x="16" y="10" width="30" height="30"/>
                                     <color key="tintColor" name="appMainTextColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="30" id="RlG-bV-Jcr"/>
                                         <constraint firstAttribute="width" constant="30" id="hqM-8h-8xu"/>
                                     </constraints>
                                 </imageView>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="tRl-eW-92q">
-                                    <rect key="frame" x="368" y="10.5" width="30" height="29"/>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="tRl-eW-92q">
+                                    <rect key="frame" x="368" y="10" width="30" height="30"/>
                                     <color key="tintColor" name="appMainTextColor"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="30" id="EPs-DD-dic"/>
@@ -160,8 +162,8 @@
     </objects>
     <resources>
         <image name="in" width="512" height="512"/>
-        <image name="line.horizontal.3" catalog="system" width="64" height="32"/>
-        <image name="person.circle" catalog="system" width="64" height="60"/>
+        <image name="menu" width="128" height="128"/>
+        <image name="user" width="128" height="128"/>
         <namedColor name="appMainBackgroundColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

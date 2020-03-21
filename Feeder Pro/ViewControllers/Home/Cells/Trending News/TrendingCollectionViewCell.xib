@@ -23,6 +23,11 @@
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WbR-Gd-WRx">
                                 <rect key="frame" x="0.0" y="0.0" width="234" height="245"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EKe-Wr-CmB">
                                 <rect key="frame" x="0.0" y="202.5" width="234" height="42.5"/>
@@ -46,8 +51,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pwu-3v-ExF">
                                 <rect key="frame" x="-1" y="245" width="236" height="60"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="B9f-Z2-tr3">
-                                        <rect key="frame" x="16" y="10.5" width="40" height="39"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="author" translatesAutoresizingMaskIntoConstraints="NO" id="B9f-Z2-tr3">
+                                        <rect key="frame" x="16" y="10" width="40" height="40"/>
                                         <color key="tintColor" name="appMainTextColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="kz2-87-GNp"/>
@@ -123,7 +128,7 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="person.circle.fill" catalog="system" width="64" height="60"/>
+        <image name="author" width="128" height="128"/>
         <namedColor name="appMainTextColor">
             <color red="0.40000000596046448" green="0.40000000596046448" blue="0.40000000596046448" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
